@@ -30,7 +30,7 @@ class Parent {
         if (num1 % num2 != 0 || num1 < num2) return null;
         return num1 ~/ num2;
       case Operator.Mul:
-        return num1 + num2;
+        return num1 * num2;
     }
     return null;
   }

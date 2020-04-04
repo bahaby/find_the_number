@@ -7,6 +7,38 @@ class Results {
   List<int> _baseIndexes = [];
   List<List<int>> _allNumberCombinations = [];
   List<Number> items = [];
+  List<dynamic> operationMap(int length){
+    switch (length) {
+      case 2:
+        return [
+          [[0, 1]],
+        ];
+      case 3:
+        return [
+          [[0, 1, 2]],
+        ];
+      case 4:
+        return [
+          [[0, 1], [2, 3]],
+          [[0, 1, 2, 3]],
+        ];
+      case 5:
+        return [
+          [[0, 1], [2, 3, 4]],
+          [[0, 1, 2], [3, 4]],
+          [[0, 1, 2, 3, 4]],
+        ];
+      case 6:
+        return [
+          [[0, 1], [2, 3], [4, 5]],
+          [[0, 1, 2], [3, 4, 5]],
+          [[0, 1], [2, 3, 4, 5]],
+          [[0, 1, 2, 3], [4, 5]],
+          [[0, 1, 2, 3, 4, 5]],
+        ];
+      default: return null;
+    }
+  }
   Results(this._baseNumbers) {
     int index = 0;
     _baseNumbers.forEach((element) {
@@ -21,12 +53,13 @@ class Results {
       for (var j = 0; j < i; j++) {}
     }
   }
-  void addResults(List<int> list){
-    int index = 0;
-    Number last = Number.noParent(list[index]);
-    Parent.operators.forEach((element) { 
-      last = Number(Parent.addNumbers(last, , op), parent);
-    });
+  static void calculate(){
+    var num1 = Number.noParent(10);
+    var num2 = Number.noParent(51);
+
+    var newnum = Parent.addNumbers(num1, num2, Operator.Sub);
+    print(newnum.number);
+    print('${newnum.parent.firstNumber.number} ${newnum.parent.secondNumber.number}');
   }
 
   void subList() {

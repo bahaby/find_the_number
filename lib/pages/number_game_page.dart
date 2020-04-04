@@ -10,7 +10,7 @@ class NumberGamePage extends StatelessWidget {
       child: Center(
         child: RaisedButton(
           onPressed: (){
-            Results([1, 2, 3, 4, 5 ,6]).subList();
+            Results.calculate();
           },
           child: Text('bas'),)
       ),
