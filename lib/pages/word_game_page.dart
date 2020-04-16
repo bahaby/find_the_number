@@ -9,7 +9,9 @@ class WordGamePage extends StatelessWidget {
       child: Center(
         child: RaisedButton(onPressed: (){
           Words words = Words();
-          words.find("abartmaci".runes.toList());
+          words.refresh();
+          print(String.fromCharCodes(words.randomLetters));
+          print(words.findBestWord());
         }),
       ),
     );

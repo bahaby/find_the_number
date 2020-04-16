@@ -1,12 +1,46 @@
 class Words {
-
-  void find(List<int> letters){
-    words.forEach((word){
-      if(word.length>8)
-        print(match(word, letters));
-    });
+  static const alphabet = "abcçdefgğhiıjklmnoöprsştuüvyz";
+  List randomLet;
+  void refresh(){
+    randomLet = randomLetters;
   }
-  Map match(String word, List<int> letters){
+  List<int> get randomLetters {
+    List<int> letters = [];
+    List<int> randomAlphabet = alphabet.runes.toList();
+    for (var i = 0; i < 8; i++) {
+      randomAlphabet.shuffle();
+      letters.add(randomAlphabet.first);
+    }
+    return letters;
+  }
+  List<Map> findBestWord(){
+    List<Map> results = [];
+    List<Map> bestResults = [];
+    int bestResultLength = 0;
+    words.forEach((word){
+      Map liste = match(word, randomLet);
+      if(liste != null){
+        if (bestResultLength < liste['word'].length){
+          bestResultLength = liste['word'].length;
+        }
+        results.add(liste);
+      }
+    });
+    results.forEach((result){
+      if (result['word'].length == bestResultLength && result['joker'] == "-"){
+        bestResults.add(result);
+      }
+    });
+    if (bestResults.isEmpty){
+      results.forEach((result){
+        if (result['word'].length == bestResultLength){
+          bestResults.add(result);
+        }
+      });
+    }
+    return bestResults;
+  }
+  Map match(String word, List letters){
     List check = word.runes.toList();
     letters.forEach((letter){
       if (check.contains(letter)){
