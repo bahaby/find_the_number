@@ -1,4 +1,5 @@
 import 'package:find_the_number/pages/number_game_page.dart';
+import 'package:find_the_number/pages/word_game_page.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
@@ -21,7 +22,9 @@ class HomePage extends StatelessWidget {
               ),
               RaisedButton(
                 child: Text('Kelime Bul'),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context).pushNamed(WordGamePage.routeName);
+                },
               ),
             ],
           ),

@@ -2,8 +2,14 @@ import 'package:find_the_number/models/parent.dart';
 
 class Number{
   int number;
-  Parent parent;
-  Number.noParent(this.number):this.parent = null;
-  Number(this.number, this.parent);
+  String history;
+  final String _add;
+  Number(this.number, this._add){
+    history = _add;
+  }
+
+  Number.add(this.number, this._add){
+    
+  }
   
 }

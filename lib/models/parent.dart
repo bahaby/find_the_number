@@ -35,9 +35,9 @@ class Parent {
     return null;
   }
 
-  static Number addNumbers(Number num1, Number num2, Operator op) {
+  /* static Number addNumbers(Number num1, Number num2, Operator op) {
     int operationResult = operation(num1.number, num2.number, op);
     if (operationResult == null) return null;
     return Number(operationResult, Parent(num1, num2, op));
-  }
+  } */
 }

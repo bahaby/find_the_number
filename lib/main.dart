@@ -1,5 +1,6 @@
 import 'package:find_the_number/pages/home_page.dart';
 import 'package:find_the_number/pages/number_game_page.dart';
+import 'package:find_the_number/pages/word_game_page.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
@@ -18,6 +19,7 @@ class MyApp extends StatelessWidget {
       routes: {
         HomePage.routeName: (_) => HomePage(),
         NumberGamePage.routeName: (_) => NumberGamePage(),
+        WordGamePage.routeName: (_) => WordGamePage(),
       },
     );
   }

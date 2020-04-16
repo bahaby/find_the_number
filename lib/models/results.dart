@@ -7,60 +7,54 @@ class Results {
   List<int> _baseIndexes = [];
   List<List<int>> _allNumberCombinations = [];
   List<Number> items = [];
-  List<dynamic> operationMap(int length){
-    switch (length) {
-      case 2:
-        return [
-          [[0, 1]],
-        ];
-      case 3:
-        return [
-          [[0, 1, 2]],
-        ];
-      case 4:
-        return [
-          [[0, 1], [2, 3]],
-          [[0, 1, 2, 3]],
-        ];
-      case 5:
-        return [
-          [[0, 1], [2, 3, 4]],
-          [[0, 1, 2], [3, 4]],
-          [[0, 1, 2, 3, 4]],
-        ];
-      case 6:
-        return [
-          [[0, 1], [2, 3], [4, 5]],
-          [[0, 1, 2], [3, 4, 5]],
-          [[0, 1], [2, 3, 4, 5]],
-          [[0, 1, 2, 3], [4, 5]],
-          [[0, 1, 2, 3, 4, 5]],
-        ];
-      default: return null;
-    }
-  }
+  List operationMap = [
+    [[[0]]],
+    [[[0, 1]]],
+    [[[0, 1, 2]]],
+    [[[0, 1], [2, 3]], [[0, 1, 2, 3]]],
+    [[[0, 1], [2, 3, 4]], [[0, 1, 2], [3, 4]], [[0, 1, 2, 3, 4]]],
+    [[[0, 1], [2, 3], [4, 5]], [[0, 1, 2], [3, 4, 5]], [[0, 1], [2, 3, 4, 5]], [[0, 1, 2, 3], [4, 5]], [[0, 1, 2, 3, 4, 5]]]
+  ];
+  
   Results(this._baseNumbers) {
     int index = 0;
     _baseNumbers.forEach((element) {
-      items.add(Number.noParent(element));
+      /* items.add(Number.noParent(element)); */
       _baseIndexes.add(index);
       index ++;
     });
   }
 
   void createResults() {
-    for (var i = 2; i < _baseNumbers.length; i++) {
-      for (var j = 0; j < i; j++) {}
-    }
-  }
-  static void calculate(){
-    var num1 = Number.noParent(10);
-    var num2 = Number.noParent(51);
 
-    var newnum = Parent.addNumbers(num1, num2, Operator.Sub);
-    print(newnum.number);
-    print('${newnum.parent.firstNumber.number} ${newnum.parent.secondNumber.number}');
+    Number test = Number(1, "1test");
+    print(test.number.toString());
+    print(test.history);
+    test = Number(5, " 12");
+    print(test.number.toString());
+    print(test.history);
+    subList();
+    print(_allNumberCombinations.length);
+      _allNumberCombinations.forEach((numbers){
+        operationMap[numbers.length -1].forEach((indexList){
+          Number result;
+          bool isFirstOut = true;
+          indexList.forEach((indexGroup){
+            Number temp;
+            isFirstOut = false;
+            bool isFirstIn = true;
+            indexGroup.forEach((index){
+              if (isFirstIn){
+                isFirstIn = false;
+              }else{
+              }
+            });
+          });
+          
+        });
+      });
   }
+  
 
   void subList() {
     var sublists = _genSubList(_baseIndexes).sublist(1);
@@ -68,7 +62,6 @@ class Results {
     sublists.forEach((element) { 
       _allNumberCombinations += _shuffleList(element);
     });
-    print(_allNumberCombinations.length);
   }
   static List<List<int>> _genSubList(List<int> list){
     if (list.length == 0) 
