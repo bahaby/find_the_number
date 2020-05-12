@@ -1,4 +1,4 @@
-import 'package:find_the_number/models/number.dart';
+/* import 'package:find_the_number/models/number.dart';
 
 enum Operator {
   Add,
@@ -19,20 +19,29 @@ class Parent {
   final Operator op;
   Parent(this.firstNumber, this.secondNumber, this.op);
 
-  static int operation(int num1, int num2, Operator op) {
-    switch (op) {
-      case Operator.Add:
-        return num1 + num2;
-      case Operator.Sub:
-        if (num1 <= num2) return null;
-        return num1 - num2;
-      case Operator.Div:
-        if (num1 % num2 != 0 || num1 < num2) return null;
-        return num1 ~/ num2;
-      case Operator.Mul:
-        return num1 * num2;
-    }
-    return null;
+  static List<int> operation(List<int> nums, int num2, Operator op) {
+    List<int> result = [];
+    nums.forEach((number) {
+      switch (op) {
+        case Operator.Add:
+          result.add(number + num2);
+          break;
+        case Operator.Sub:
+          if (number > num2) {
+            result.add(number - num2);
+          }
+          break;
+        case Operator.Div:
+          if (!(number % num2 != 0 || number < num2)) {
+            result.add(number ~/ num2);
+          }
+          break;
+        case Operator.Mul:
+          result.add(number * num2);
+          break;
+      }
+    });
+    return result;
   }
 
   /* static Number addNumbers(Number num1, Number num2, Operator op) {
@@ -41,3 +50,4 @@ class Parent {
     return Number(operationResult, Parent(num1, num2, op));
   } */
 }
+ */

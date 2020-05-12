@@ -1,5 +1,6 @@
 import 'package:find_the_number/pages/home_page.dart';
 import 'package:find_the_number/pages/number_game_page.dart';
+import 'package:find_the_number/pages/select_char_page.dart';
 import 'package:find_the_number/pages/word_game_page.dart';
 import 'package:flutter/material.dart';
 
@@ -20,6 +21,7 @@ class MyApp extends StatelessWidget {
         HomePage.routeName: (_) => HomePage(),
         NumberGamePage.routeName: (_) => NumberGamePage(),
         WordGamePage.routeName: (_) => WordGamePage(),
+        SelectCharPage.routeName: (_) => SelectCharPage(),
       },
     );
   }

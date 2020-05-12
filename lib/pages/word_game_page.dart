@@ -1,4 +1,5 @@
 import 'package:find_the_number/models/words.dart';
+import 'package:find_the_number/pages/select_char_page.dart';
 import 'package:find_the_number/widgets/word_item.dart';
 import 'package:flutter/material.dart';
 
@@ -28,19 +29,34 @@ class _WordGamePageState extends State<WordGamePage> {
             Container(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: words.randomLetters.map((letter) {
-                  return Container(
-                    width: 30,
-                    padding: EdgeInsets.symmetric(horizontal: 6, vertical: 3),
-                    decoration: BoxDecoration(
-                        border: Border(bottom: BorderSide(width: 3))),
-                    child: Text(
-                      String.fromCharCode(letter),
-                      style: TextStyle(
-                        fontSize: 30,
-                        color: Theme.of(context).primaryColor,
+                children: words.randomLetters.asMap().entries.map((letter) {
+                  return InkWell(
+                    borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(5),
+                        topRight: Radius.circular(5)),
+                    onTap: () async {
+                      var result = await Navigator.of(context)
+                          .pushNamed(SelectCharPage.routeName, arguments: letter.value);
+                      if (result != null) {
+                        words.randomLetters[letter.key] = result;
+                        setState(() {
+                          words.findBestWord();
+                        });
+                      }
+                    },
+                    child: Container(
+                      width: 30,
+                      padding: EdgeInsets.symmetric(horizontal: 6, vertical: 3),
+                      decoration: BoxDecoration(
+                          border: Border(bottom: BorderSide(width: 3))),
+                      child: Text(
+                        String.fromCharCode(letter.value).toUpperCase(),
+                        style: TextStyle(
+                          fontSize: 30,
+                          color: Theme.of(context).primaryColor,
+                        ),
+                        textAlign: TextAlign.center,
                       ),
-                      textAlign: TextAlign.center,
                     ),
                   );
                 }).toList(),

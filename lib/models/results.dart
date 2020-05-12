@@ -1,20 +1,23 @@
-import 'package:find_the_number/models/number.dart';
-import 'package:find_the_number/models/parent.dart';
-import 'package:flutter/foundation.dart';
+class Result {
+  final int number;
+  final String operations;
+  Result(this.number, this.operations);
+}
 
-class Results {
+/* class Results {
   List<int> _baseNumbers;
   List<int> _baseIndexes = [];
   List<List<int>> _allNumberCombinations = [];
   List<Number> items = [];
-  List operationMap = [
+
+  /* List operationMap = [
     [[[0]]],
     [[[0, 1]]],
     [[[0, 1, 2]]],
     [[[0, 1], [2, 3]], [[0, 1, 2, 3]]],
     [[[0, 1], [2, 3, 4]], [[0, 1, 2], [3, 4]], [[0, 1, 2, 3, 4]]],
     [[[0, 1], [2, 3], [4, 5]], [[0, 1, 2], [3, 4, 5]], [[0, 1], [2, 3, 4, 5]], [[0, 1, 2, 3], [4, 5]], [[0, 1, 2, 3, 4, 5]]]
-  ];
+  ]; */
   
   Results(this._baseNumbers) {
     int index = 0;
@@ -26,33 +29,21 @@ class Results {
   }
 
   void createResults() {
-
-    Number test = Number(1, "1test");
-    print(test.number.toString());
-    print(test.history);
-    test = Number(5, " 12");
-    print(test.number.toString());
-    print(test.history);
     subList();
-    print(_allNumberCombinations.length);
-      _allNumberCombinations.forEach((numbers){
-        operationMap[numbers.length -1].forEach((indexList){
-          Number result;
-          bool isFirstOut = true;
-          indexList.forEach((indexGroup){
-            Number temp;
-            isFirstOut = false;
-            bool isFirstIn = true;
-            indexGroup.forEach((index){
-              if (isFirstIn){
-                isFirstIn = false;
-              }else{
-              }
-            });
-          });
-          
-        });
+    _allNumberCombinations.forEach((indexes){
+      List<int> results;
+      bool isFirst = true;
+      int result = 0;
+      indexes.forEach((index) {
+        if(isFirst){
+          results = [_baseNumbers[index]];
+          isFirst = false;
+        }else{
+          results = Parent.operation(results, _baseNumbers[index]);
+        }
       });
+
+    });
   }
   
 
@@ -98,3 +89,4 @@ class Results {
 
   }
 }
+ */
