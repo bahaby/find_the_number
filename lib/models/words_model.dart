@@ -1,10 +1,10 @@
 import 'package:find_the_number/data/words_data.dart';
 
-class Words {
+class WordsModel {
   static const alphabet = "abcçdefgğhiıjklmnoöprsştuüvyz";
   List<int> randomLetters;
   List<Map> bestResults;
-  Words(){
+  WordsModel(){
     refresh();
   }
   void refresh() {

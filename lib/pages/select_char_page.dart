@@ -1,4 +1,4 @@
-import 'package:find_the_number/models/words.dart';
+import 'package:find_the_number/models/words_model.dart';
 import 'package:find_the_number/widgets/char_item.dart';
 import 'package:flutter/material.dart';
 
@@ -15,7 +15,7 @@ class SelectCharPage extends StatelessWidget {
         child: GridView.count(
           crossAxisCount: 5,
           children:
-            Words.alphabet.runes.map((char){
+            WordsModel.alphabet.runes.map((char){
               bool isSelected = currentChar == char;
               return CharItem(char, isSelected);
             }).toList(),

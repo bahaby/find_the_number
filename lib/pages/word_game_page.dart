@@ -1,4 +1,4 @@
-import 'package:find_the_number/models/words.dart';
+import 'package:find_the_number/models/words_model.dart';
 import 'package:find_the_number/pages/select_char_page.dart';
 import 'package:find_the_number/widgets/word_item.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +11,7 @@ class WordGamePage extends StatefulWidget {
 }
 
 class _WordGamePageState extends State<WordGamePage> {
-  Words words = Words();
+  WordsModel words = WordsModel();
 
   @override
   Widget build(BuildContext context) {
