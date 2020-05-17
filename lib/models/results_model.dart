@@ -7,9 +7,10 @@ class ResultModel {
   final int range;
   ResultModel(this.number, this.steps, this.stepCount, this.range);
   List<int> get trace{
-    List<int> result = []; 
+    List<int> results = []; 
     steps.forEach((step) { 
-      result.add(step.result);
+      results.add(step.result);
     });
+    return results;
   }
 }

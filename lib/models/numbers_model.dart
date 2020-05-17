@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:find_the_number/models/results_model.dart';
 import 'package:find_the_number/models/step_model.dart';
+import 'package:flutter/foundation.dart';
 enum Operator {
   Add,
   Sub,
@@ -18,10 +19,10 @@ class NumbersModel {
   ];
 
   List<ResultModel> results = [];
-  int target;
-  List<int> baseNumbers;
   List<ResultModel> bestResults = [];
-  List<StepModel> _history = [];
+  List<StepModel> _steps = [];
+  List<int> baseNumbers;
+  int target;
   
   NumbersModel(){
     refresh();
@@ -52,10 +53,10 @@ class NumbersModel {
   }
 
   ResultModel operate(){
-    _history = [];
+    _steps = [];
     ResultModel result;
     int range = 100000000;
-    int steps = 0;
+    int stepCount = 0;
     List<int> availableNumbers = [...baseNumbers];
     while (availableNumbers.length > 1) {
       int tempResult;
@@ -63,15 +64,13 @@ class NumbersModel {
       operators.shuffle();
       tempResult = operation(availableNumbers[0], availableNumbers[1], operators[0]);
       if (tempResult == null) continue;
-      steps++;
+      stepCount++;
       availableNumbers.add(tempResult);
       availableNumbers.removeRange(0, 2);
       if ((tempResult - target).abs() < range){
         range = (tempResult - target).abs();
-        result = ResultModel(tempResult, [..._history], steps, range);
+        result = ResultModel(tempResult, [..._steps], stepCount, range);
       }
-    }
-    if (result != null) {
     }
     return result;
   } 
@@ -97,51 +96,23 @@ class NumbersModel {
         bestResults.add(result);
       }
     });
-    bestResults.forEach((result) { 
-      if (!isUnique(result)){
-        bestResults.remove(result);
-      }
-    });
-  }
-  
-  List<List<int>> get traces{
-    return bestResults.map((e) => e.trace).toList();
-  }
-
-  bool isUnique(ResultModel result){
-    var check = [...result.trace];
-
-    bool unique = true;
-    traces.forEach((t) { 
-      var traceCheck = [...t];
-      t.forEach((element) { 
-        if (check.contains(element)) {
-          check.remove(element);
-          traceCheck.remove(element);
-        }
-      });    
-      if (check.length == 0 && traceCheck.length == 0){
-        unique = false;
-      }
-    });
-    return unique;
   }
 
   int operation(int num1, int num2, Operator op) {
     switch (op) {
       case Operator.Add:
-        _history.add(StepModel(num1, num2, op, num1 + num2));
+        _steps.add(StepModel(num1, num2, op, num1 + num2));
         return num1 + num2;
       case Operator.Sub:
         if (num1 <= num2) return null;
-        _history.add(StepModel(num1, num2, op, num1 - num2));
+        _steps.add(StepModel(num1, num2, op, num1 - num2));
         return num1 - num2;
       case Operator.Div:
         if (num1 % num2 != 0 || num1 < num2) return null;
-        _history.add(StepModel(num1, num2, op, num1 ~/ num2));
+        _steps.add(StepModel(num1, num2, op, num1 ~/ num2));
         return num1 ~/ num2;
       case Operator.Mul:
-        _history.add(StepModel(num1, num2, op, num1 * num2));
+        _steps.add(StepModel(num1, num2, op, num1 * num2));
         return num1 * num2;
     }
     return null;

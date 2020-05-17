@@ -86,12 +86,12 @@ class _NumberGamePageState extends State<NumberGamePage> {
                       numbers.refresh();
                     });
                   },
-                  child: Text("Yenile"),
+                  child: Text("Sayıları Yenile"),
                 ),
                 Text("Score"),
                 RaisedButton(
                   onPressed: () {},
-                  child: Text("Harf gir"),
+                  child: Text("Sayı gir"),
                 ),
               ],
             ),
@@ -112,30 +112,6 @@ class _NumberGamePageState extends State<NumberGamePage> {
         ),
       ),
     );
-    /* return Container(
-      color: Colors.amber,
-      child: Center(
-        child: RaisedButton(
-          onPressed: (){
-            var result = Numbers();
-            String msg = "Numbers: ";
-            result.baseNumbers.forEach((element) { 
-              msg += "$element, ";
-            });
-            msg += "Target: ${result.target}";
-            print(msg);
-            result.bestResults.forEach((element) { 
-              element.steps.forEach((step) { 
-                print("${step.num1}" + step.op + "${step.num2}" + " = " + "${step.result}");
-              });
-            print("\n\n");
-            });
-
-
-          },
-          child: Text('bas'),)
-      ),
-    ); */
   }
 
   Container buildTitle(BuildContext context, String title) {
