@@ -2,7 +2,6 @@ import 'dart:math';
 
 import 'package:find_the_number/models/results_model.dart';
 import 'package:find_the_number/models/step_model.dart';
-import 'package:flutter/foundation.dart';
 enum Operator {
   Add,
   Sub,
@@ -21,38 +20,23 @@ class NumbersModel {
   List<ResultModel> results = [];
   List<ResultModel> bestResults = [];
   List<StepModel> _steps = [];
-  List<int> baseNumbers;
-  int target;
+  int range;
   
-  NumbersModel(){
-    refresh();
-  }
-
-  refresh(){
-    generateNumbers();
-    calculate();
-  }
-
-  generateNumbers(){
+  static List<int> get generateNumbers{
     List<int> numbers = [];
     var rd = Random.secure(); 
-    int target = rd.nextInt(900) + 100;
     for (var i = 0; i < 6; i++) {
       numbers.add(rd.nextInt(9) + 1);
     }
     numbers.last *= 10;
-
-    this.baseNumbers = numbers;
-    this.target = target;
+    return numbers;
+  }
+  static int get generateTarget{
+    var rd = Random.secure(); 
+    return rd.nextInt(900) + 100;
   }
 
-  setUp(List<int> baseNumbers, int target){
-    this.baseNumbers = baseNumbers;
-    this.target = target;
-    calculate();
-  }
-
-  ResultModel operate(){
+  ResultModel operate(List<int> baseNumbers, int target){
     _steps = [];
     ResultModel result;
     int range = 100000000;
@@ -74,9 +58,9 @@ class NumbersModel {
     }
     return result;
   } 
-  calculate(){
-    for (var i = 0; i < 50000; i++) {
-      ResultModel temp = operate();
+  calculate(List<int> baseNumbers, int target){
+    for (var i = 0; i < 10000; i++) {
+      ResultModel temp = operate(baseNumbers, target);
       if (temp != null){
         results.add(temp);
       }
@@ -96,6 +80,7 @@ class NumbersModel {
         bestResults.add(result);
       }
     });
+    this.range = bestRange; 
   }
 
   int operation(int num1, int num2, Operator op) {
@@ -117,6 +102,8 @@ class NumbersModel {
     }
     return null;
   }
-  
+  int get score{
+    return (range < 10) ? 10 - range : 0;
+  }
 
 }

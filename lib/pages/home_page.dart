@@ -1,4 +1,5 @@
 import 'package:find_the_number/pages/number_game_page.dart';
+import 'package:find_the_number/pages/select_number_page.dart';
 import 'package:find_the_number/pages/word_game_page.dart';
 import 'package:flutter/material.dart';
 
@@ -24,6 +25,15 @@ class HomePage extends StatelessWidget {
                 child: Text('Kelime Bul'),
                 onPressed: () {
                   Navigator.of(context).pushNamed(WordGamePage.routeName);
+                },
+              ),
+              RaisedButton(
+                child: Text('ss Bul'),
+                onPressed: () {
+                  Navigator.of(context).pushNamed(SelectNumberPage.routeName, arguments: {
+                    'number': 50,
+                    'mode': 1,
+                  });
                 },
               ),
             ],

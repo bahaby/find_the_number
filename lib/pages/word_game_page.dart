@@ -76,7 +76,7 @@ class _WordGamePageState extends State<WordGamePage> {
                   },
                   child: Text("Yenile"),
                 ),
-                Text("Score"),
+                Text("Score: ${words.score}"),
                 RaisedButton(
                   onPressed: () {},
                   child: Text("Harf gir"),

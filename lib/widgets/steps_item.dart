@@ -18,9 +18,9 @@ class StepsItem extends StatelessWidget {
             return Row(
               children: <Widget>[
                 Text(step.num1.toString(), style: style,),
-                Text(step.op, style: style,),
+                Text(" ${step.op} ", style: style,),
                 Text(step.num2.toString(), style: style,),
-                Text("=", style: style,),
+                Text(" = ", style: style,),
                 Text(step.result.toString(), style: style,),
               ],
             );
