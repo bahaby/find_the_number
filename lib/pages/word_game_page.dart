@@ -50,7 +50,7 @@ class _WordGamePageState extends State<WordGamePage> {
                       decoration: BoxDecoration(
                           border: Border(bottom: BorderSide(width: 3))),
                       child: Text(
-                        String.fromCharCode(letter.value).toUpperCase(),
+                        String.fromCharCode(letter.value),
                         style: TextStyle(
                           fontSize: 30,
                           color: Theme.of(context).primaryColor,
@@ -68,18 +68,20 @@ class _WordGamePageState extends State<WordGamePage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                RaisedButton(
-                  onPressed: () {
-                    setState(() {
-                      words.refresh();
-                    });
-                  },
-                  child: Text("Yenile"),
+                Container(
+                  width: 120,
+                  child: RaisedButton(
+                    onPressed: () {
+                      setState(() {
+                        words.refresh();
+                      });
+                    },
+                    child: Text("Yenile"),
+                  ),
                 ),
                 Text("Score: ${words.score}"),
-                RaisedButton(
-                  onPressed: () {},
-                  child: Text("Harf gir"),
+                Container(
+                  width: 120,
                 ),
               ],
             ),

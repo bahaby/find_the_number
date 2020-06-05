@@ -1,4 +1,3 @@
-import 'package:find_the_number/widgets/number_item.dart';
 import 'package:flutter/material.dart';
 
 class SelectTargetPage extends StatefulWidget {

@@ -14,7 +14,7 @@ class CharItem extends StatelessWidget {
       child: Container(
         child: Center(
           child: Text(
-            String.fromCharCode(_char).toUpperCase(),
+            String.fromCharCode(_char),
             style: TextStyle(
               color: _isSelected ? Theme.of(context).primaryColor : Colors.black,
               fontSize: 30,

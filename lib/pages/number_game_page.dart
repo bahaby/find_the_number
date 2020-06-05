@@ -123,16 +123,6 @@ class _NumberGamePageState extends State<NumberGamePage> {
                 Text("Score: ${numbers.score}"),
                 Container(
                   width: 120,
-                  child: RaisedButton(
-                    onPressed: () {
-                      setState(() {
-                        baseNumbers = [1, 4, 2, 5, 7, 60];
-                        target = 485;
-                        numbers.calculate(baseNumbers, target);
-                      });
-                    },
-                    child: Text("Sayı gir"),
-                  ),
                 ),
               ],
             ),
