@@ -19,7 +19,7 @@ class NumbersModel {
 
   List<ResultModel> results = [];//sonuçlar
   List<ResultModel> bestResults = [];//en yakın filtrelenmiş sonuçlar
-  List<StepModel> _steps = [];//geçici adımlar
+  List<StepModel> _steps = [];//adımlar
   int range;//hedef sayıya olan mesafe
   
   static List<int> get generateNumbers{//sayı oluşturma
@@ -59,7 +59,7 @@ class NumbersModel {
     return result;
   } 
   calculate(List<int> baseNumbers, int target){
-    for (var i = 0; i < 6000; i++) {//10000 kere operate fonsiyonunu çalıştırır.
+    for (var i = 0; i < 10000; i++) {//10000 kere operate fonsiyonunu çalıştırır.
       ResultModel temp = operate(baseNumbers, target);
       if (temp != null){//sonuç null değil ise result'a eklenir.
         results.add(temp);
