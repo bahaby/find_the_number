@@ -2,16 +2,16 @@ import 'package:find_the_number/data/words_data.dart';
 
 class WordsModel {
   static const alphabet = "abcçdefgğhiıjklmnoöprsştuüvyz";
-  List<int> randomLetters;
-  List<Map> bestResults;
+  List<int> randomLetters; //rastgele oluşturulan harflerin ascii değerlerinin tutulduğu dizi
+  List<Map> bestResults; //bulunan kelimelerin tutulduğu dizi
   WordsModel(){
     refresh();
   }
-  void refresh() {
+  void refresh() { //random harfleri değiştirip yeniden arama yapmak için
     randomLetters = generatedRandomLetters;
-    findBestWord();
+    findBestWords();
   }
-  List<int> get generatedRandomLetters {
+  List<int> get generatedRandomLetters { // random harfleri üretmek için
     List<int> letters = [];
     List<int> randomAlphabet = alphabet.runes.toList();
     for (var i = 0; i < 8; i++) {
@@ -21,25 +21,25 @@ class WordsModel {
     return letters;
   }
 
-  void findBestWord() {
-    List<Map> results = [];
-    List<Map> bestResults = [];
-    int bestResultLength = 0;
+  void findBestWords() { //kelime listesinden bizdeki harflere göreme arama yapmak için
+    List<Map> results = []; //3 harf ile 9 harf arasında bulunan bütün sonuçların tutulduğu dizi
+    List<Map> bestResults = []; // en uzun ve mümkünse jokersiz olan kelimelerin tutulduğu dizi
+    int bestResultLength = 0; //en uzun kelimenin uzunlupunu tutmak için
     WordsData.words.forEach((word) {
-      Map liste = match(word, randomLetters);
+      Map liste = match(word, randomLetters); //eşleşme varsa geçici liste Map'ına atama yapılır.
       if (liste != null) {
         if (bestResultLength < liste['word'].length) {
-          bestResultLength = liste['word'].length;
+          bestResultLength = liste['word'].length; //en uzun kelimenin uzunluğunu kaydetmek için
         }
-        results.add(liste);
+        results.add(liste); //result dizisine ekleme yapılır.
       }
     });
-    results.forEach((result) {
+    results.forEach((result) {//en uzun kelimeler arasından jokersiz var mı diye bakılır
       if (result['word'].length == bestResultLength && result['joker'] == "-") {
         bestResults.add(result);
       }
     });
-    if (bestResults.isEmpty) {
+    if (bestResults.isEmpty) {//jokersiz kelime bulunamazsa jokerli olanlar bestResult dizisine eklenir.
       results.forEach((result) {
         if (result['word'].length == bestResultLength) {
           bestResults.add(result);
@@ -49,23 +49,23 @@ class WordsModel {
     this.bestResults = bestResults;
   }
 
-  Map match(String word, List letters) {
-    List check = word.runes.toList();
-    letters.forEach((letter) {
-      if (check.contains(letter)) {
-        check.remove(letter);
+  Map match(String word, List letters) { //kelime ile elimizdeki harflerin eşleşmesinin kontrol edildiği fonksiyon
+    List check = word.runes.toList(); // kelime harflerine ayrılır ve geçici diziye kaydedilir.
+    letters.forEach((letter) { 
+      if (check.contains(letter)) { //kelimenin harflerinde elimizdeki harfler varmı diye bakılır.
+        check.remove(letter); // eğer var ise geçici kelime dizisinden bulunan harf çıkartılır.
       }
     });
-    if (check.length <= 1) {
+    if (check.length <= 1) { //kelimede 1 veya 0 harf kaldıysa devam edilir
       return {
-        "word": word,
-        "joker": (check.isEmpty) ? "-" : String.fromCharCode(check[0]),
+        "word": word, //kelime 
+        "joker": (check.isEmpty) ? "-" : String.fromCharCode(check[0]), // 1 harf kaldıysa joker olarak döndürülür
       };
-    } else
+    } else //kelimede 1 den fazla harf kaldıysa bu kelime aradığımız koşulu saplamaz null döndürülür
       return null;
   }
 
-  int get score{
+  int get score{//bulunan sonuca göre puan hesaplanır.
     switch (bestResults.first['word'].length) {
       case 3: return 3;
       case 4: return 4;

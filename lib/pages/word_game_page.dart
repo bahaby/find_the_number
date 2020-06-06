@@ -40,7 +40,7 @@ class _WordGamePageState extends State<WordGamePage> {
                       if (result != null) {
                         words.randomLetters[letter.key] = result;
                         setState(() {
-                          words.findBestWord();
+                          words.findBestWords();
                         });
                       }
                     },
