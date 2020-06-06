@@ -15,15 +15,15 @@ class HomePage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
               RaisedButton(
-                child: Text('Sayı Bul'),
+                child: Text('Bir Kelime'),
                 onPressed: () {
-                  Navigator.of(context).pushNamed(NumberGamePage.routeName);
+                  Navigator.of(context).pushNamed(WordGamePage.routeName);
                 },
               ),
               RaisedButton(
-                child: Text('Kelime Bul'),
+                child: Text('Bir İşlem'),
                 onPressed: () {
-                  Navigator.of(context).pushNamed(WordGamePage.routeName);
+                  Navigator.of(context).pushNamed(NumberGamePage.routeName);
                 },
               ),
             ],
