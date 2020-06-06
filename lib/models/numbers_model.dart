@@ -42,7 +42,7 @@ class NumbersModel {
     int range = 100000000;
     int stepCount = 0;//adım sayısı
     List<int> availableNumbers = [...baseNumbers];//sayılar diziye kopyalanır
-    while (availableNumbers.length > 1) {//asıl işlem kısmı
+    while (availableNumbers.length > 1) {//bir sayı kalana kadar işlem yapılıyor
       int tempResult;// geçici sonuç
       availableNumbers.shuffle();//dizideki sayıların yerlerini değiştirir
       operators.shuffle();//operatör sıralarını değiştirir
