@@ -1,6 +1,6 @@
 import 'package:find_the_number/models/step_model.dart';
 
-class ResultModel {
+class ResultModel {//Bulunan sonuçlar tutulur
   final int number;
   final List<StepModel> steps;
   final int stepCount;

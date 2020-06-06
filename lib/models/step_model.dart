@@ -1,6 +1,6 @@
 import 'package:find_the_number/models/numbers_model.dart';
 
-class StepModel {
+class StepModel {//adımlar tutulur.
   final Operator _op;
   final int num1;
   final int num2;

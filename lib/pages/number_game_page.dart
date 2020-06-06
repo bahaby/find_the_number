@@ -123,6 +123,14 @@ class _NumberGamePageState extends State<NumberGamePage> {
                 Text("Score: ${numbers.score}"),
                 Container(
                   width: 120,
+                  child: RaisedButton(
+                    onPressed: () {
+                      setState(() {
+                        numbers.calculate(baseNumbers, target);
+                      });
+                    },
+                    child: Text("Tekrar Dene"),
+                  ),
                 ),
               ],
             ),
